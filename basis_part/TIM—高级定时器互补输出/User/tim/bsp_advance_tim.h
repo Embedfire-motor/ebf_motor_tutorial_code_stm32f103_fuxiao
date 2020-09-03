@@ -22,7 +22,6 @@
 #define ADVANCE_BKIN_GPIO_PORT        		GPIOA                      
 #define ADVANCE_BKIN_GPIO_CLK_ENABLE()  	__HAL_RCC_GPIOA_CLK_ENABLE()
 
-
 extern TIM_HandleTypeDef TIM_TimeBaseStructure;
 
 void TIMx_Configuration(void);

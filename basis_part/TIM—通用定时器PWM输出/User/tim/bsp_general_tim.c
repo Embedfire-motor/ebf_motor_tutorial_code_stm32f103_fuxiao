@@ -76,7 +76,7 @@ static void TIM_PWMOUTPUT_Config(void)
 	//				PCLK1 = HCLK / 2 
 	//				=> TIMxCLK=HCLK/2=SystemCoreClock/2*2=72MHz
 	// 设定定时器频率为=TIMxCLK/(TIM_Prescaler+1)=10KHz
-  TIM_TimeBaseStructure.Init.Prescaler = 7200-1;	
+  TIM_TimeBaseStructure.Init.Prescaler = 720-1;	
 	/*计数方式*/
   TIM_TimeBaseStructure.Init.CounterMode = TIM_COUNTERMODE_UP;
 	/*采样时钟分频*/
