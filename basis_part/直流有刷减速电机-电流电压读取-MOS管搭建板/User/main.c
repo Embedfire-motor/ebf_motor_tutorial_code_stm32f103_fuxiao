@@ -38,7 +38,7 @@ float ADC_Vol;
 int main(void) 
 {
   __IO uint16_t ChannelPulse = PWM_MAX_PERIOD_COUNT*0.5;
-  uint8_t flag = 0;
+  uint8_t flag = 0, i = 0, enable = 0;
 
   HAL_Init();
   
@@ -73,79 +73,56 @@ int main(void)
     /* 扫描KEY1 */
     if( Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
     {
-      /* 使能电机 */
-      set_motor_enable(); 
-			
-			while(1){
-
-				/* 扫描KEY1 */
-				if( Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
-				{
-					/* 增大占空比 */
-					ChannelPulse += PWM_MAX_PERIOD_COUNT/10;
-					
-					if(ChannelPulse > PWM_MAX_PERIOD_COUNT)
-						ChannelPulse = PWM_MAX_PERIOD_COUNT;
-					
-					set_motor_speed(ChannelPulse);
-				}
-				
-				/* 扫描KEY2 */
-				if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
-				{
-					if(ChannelPulse < PWM_MAX_PERIOD_COUNT/10)
-						ChannelPulse = 0;
-					else
-						ChannelPulse -= PWM_MAX_PERIOD_COUNT/10;
-					
-					set_motor_speed(ChannelPulse);
-				}
-
-				if (HAL_GetTick()%50 == 0 && flag == 0)    // 每50毫秒读取一次电流、电压
-				{
-					flag = 1;
-					int32_t current = get_curr_val();
-					
-				#if 0//defined(PID_ASSISTANT_EN)
-					set_computer_value(SEED_FACT_CMD, CURVES_CH1, &current, 1);
-				#else
-					printf("电源电压：%.2fV，电流：%dmA\r\n", get_vbus_val(), current); 
-				#endif
-					
-				}
-				else if (HAL_GetTick()%50 != 0 && flag == 1)
-				{
-					flag = 0;
-				}
-			}
+      if (enable == 0)
+      {
+        /* 使能电机 */
+        set_motor_enable();
+      }
+      else
+      {
+        /* 禁用电机 */
+        set_motor_disable();
+      }
+      
+      enable = !enable;
     }
-
-#if 0//按键数量少,换向\禁用电机功能不开放
-    /* 扫描KEY2 */
+    
+    /* 扫描KEY3 */
     if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
     {
-      /* 禁用电机 */
-      set_motor_disable();
+      /* 增大占空比 */
+      ChannelPulse += PWM_MAX_PERIOD_COUNT/10;
+      
+      if(ChannelPulse > PWM_MAX_PERIOD_COUNT)
+        ChannelPulse = PWM_MAX_PERIOD_COUNT;
+      
+      set_motor_speed(ChannelPulse);
     }
-		
+    
+    /* 扫描KEY4 */
+    if( Key_Scan(KEY3_GPIO_PORT, KEY3_PIN) == KEY_ON)
+    {
+      if(ChannelPulse < PWM_MAX_PERIOD_COUNT/10)
+        ChannelPulse = 0;
+      else
+        ChannelPulse -= PWM_MAX_PERIOD_COUNT/10;
+      
+      set_motor_speed(ChannelPulse);
+    }
+    
     /* 扫描KEY5 */
-    if( Key_Scan(KEY5_GPIO_PORT, KEY5_PIN) == KEY_ON)
+    if( Key_Scan(KEY4_GPIO_PORT, KEY4_PIN) == KEY_ON)
     {
       /* 转换方向 */
       set_motor_direction( (++i % 2) ? MOTOR_FWD : MOTOR_REV);
     }
-#endif
+
     if (HAL_GetTick()%50 == 0 && flag == 0)    // 每50毫秒读取一次电流、电压
     {
       flag = 1;
       int32_t current = get_curr_val();
       
-    #if 0//defined(PID_ASSISTANT_EN)
-      set_computer_value(SEED_FACT_CMD, CURVES_CH1, &current, 1);
-    #else
       printf("电源电压：%.2fV，电流：%dmA\r\n", get_vbus_val(), current); 
-    #endif
-      
     }
     else if (HAL_GetTick()%50 != 0 && flag == 1)
     {

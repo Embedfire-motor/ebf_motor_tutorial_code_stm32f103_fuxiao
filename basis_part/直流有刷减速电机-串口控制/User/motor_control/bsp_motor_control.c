@@ -136,7 +136,7 @@ void show_help(void)
     printf("d [data]     -设置电机的方向，%d:正向转，%d:反向转\n\r", MOTOR_FWD, MOTOR_REV);
 		printf("命令示例:d 0,注意d与0间含一个空格,发送时末尾需有换行符或在串口助手中勾选发送新行\n\r");
 }
-
+#if 1
 /**
   * @brief  处理串口接收到的数据
   * @param  无
@@ -208,6 +208,6 @@ void deal_serial_data(void)
 
     }
 }
-
+#endif
 /*********************************************END OF FILE**********************/
 

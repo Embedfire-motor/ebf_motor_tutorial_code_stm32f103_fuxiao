@@ -177,7 +177,7 @@ void SysTick_Handler(void)
 
 // 串口中断服务函数
 
-void DEBUG_USART_IRQHandler(void)
+void USART1_IRQHandler(void)
 {
   __IO uint8_t data;
   

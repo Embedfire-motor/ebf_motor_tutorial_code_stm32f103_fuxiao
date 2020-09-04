@@ -31,6 +31,8 @@
 int main(void) 
 {
   __IO uint16_t ChannelPulse = PWM_MAX_PERIOD_COUNT/2;
+  uint8_t i = 0;
+  uint8_t enable = 0;
   
 	/* 初始化系统时钟为168MHz */
 	SystemClock_Config();
@@ -52,58 +54,49 @@ int main(void)
     /* 扫描KEY1 */
     if( Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
     {
-      /* 使能电机 */
-      set_motor_enable();
-			
-			while(1)
-			{
-				/* 扫描KEY1 */
-				if( Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
-				{
-					/* 增大占空比 */
-					ChannelPulse += PWM_MAX_PERIOD_COUNT/10;
-					
-					if(ChannelPulse > PWM_MAX_PERIOD_COUNT)
-						ChannelPulse = PWM_MAX_PERIOD_COUNT;
-					
-					set_motor_speed(ChannelPulse);
-				}
-
-				/* 扫描KEY2 */
-				if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
-				{
-					if(ChannelPulse < PWM_MAX_PERIOD_COUNT/10)
-						ChannelPulse = 0;
-					else
-						ChannelPulse -= PWM_MAX_PERIOD_COUNT/10;
-					
-					set_motor_speed(ChannelPulse);
-				}
-			}
-    }
-		
-
-#if 0//按键数量少,换向\禁用电机功能不开放
-    /* 扫描KEY1 */
-    if( Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
-    {
-      /* 使能电机 */
-      set_motor_enable();
+      if (enable == 0)
+      {
+        /* 使能电机 */
+        set_motor_enable();
+      }
+      else
+      {
+        /* 禁用电机 */
+        set_motor_disable();
+      }
+      
+      enable = !enable;
     }
     
-    /* 扫描KEY2 */
+    /* 扫描KEY3 */
     if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
     {
-      set_motor_disable();
+      /* 增大占空比 */
+      ChannelPulse += PWM_MAX_PERIOD_COUNT/10;
+      
+      if(ChannelPulse > PWM_MAX_PERIOD_COUNT)
+        ChannelPulse = PWM_MAX_PERIOD_COUNT;
+      
+      set_motor_speed(ChannelPulse);
     }
-		
+    
+    /* 扫描KEY4 */
+    if( Key_Scan(KEY3_GPIO_PORT, KEY3_PIN) == KEY_ON)
+    {
+      if(ChannelPulse < PWM_MAX_PERIOD_COUNT/10)
+        ChannelPulse = 0;
+      else
+        ChannelPulse -= PWM_MAX_PERIOD_COUNT/10;
+      
+      set_motor_speed(ChannelPulse);
+    }
+    
     /* 扫描KEY5 */
-    if( Key_Scan(KEY5_GPIO_PORT, KEY5_PIN) == KEY_ON)
+    if( Key_Scan(KEY4_GPIO_PORT, KEY4_PIN) == KEY_ON)
     {
       /* 转换方向 */
       set_motor_direction( (++i % 2) ? MOTOR_FWD : MOTOR_REV);
     }
-#endif
 	}
 }
 
