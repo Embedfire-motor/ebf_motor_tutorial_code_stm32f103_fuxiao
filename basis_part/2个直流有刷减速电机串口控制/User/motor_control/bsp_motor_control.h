@@ -6,13 +6,13 @@
 #include "main.h"
 
 /* 电机使能脚 */
-#define ENA_PIN                  GPIO_PIN_12
-#define ENA_GPIO_PORT            GPIOB
-#define ENA_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOB_CLK_ENABLE()
+#define ENA_PIN                  GPIO_PIN_15
+#define ENA_GPIO_PORT            GPIOD
+#define ENA_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOD_CLK_ENABLE()
 
-#define ENB_PIN                  GPIO_PIN_13
-#define ENB_GPIO_PORT            GPIOB
-#define ENB_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOB_CLK_ENABLE()
+#define ENB_PIN                  GPIO_PIN_9
+#define ENB_GPIO_PORT            GPIOC
+#define ENB_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOC_CLK_ENABLE()
 
 /* 电机方向控制枚举 */
 typedef enum
