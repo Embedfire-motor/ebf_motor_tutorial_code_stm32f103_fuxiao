@@ -136,9 +136,10 @@ void motor_pid_control(void)
 {
   static uint32_t location_timer = 0;         // 速度环周期
   int32_t actual_current = get_curr_val();    // 读取当前电流值
-  
+	
   if (is_motor_en == 1)     // 电机在使能状态下才进行控制处理
   {
+
     float cont_val = 0;                       // 当前控制值
     static __IO int32_t Capture_Count = 0;    // 当前时刻总计数值
     static __IO int32_t Last_Count = 0;       // 上一时刻总计数值
@@ -174,7 +175,7 @@ void motor_pid_control(void)
       set_computer_value(SEND_TARGET_CMD, CURVES_CH2, &temp, 1);     // 给通道 2 发送目标值
     #endif
     }
-    
+    printf("actual_current=%d,", actual_current);
     cont_val = curr_pid_realize(&pid_curr, actual_current);    // 进行 PID 计算
     
     if (cont_val < 0)
@@ -192,7 +193,7 @@ void motor_pid_control(void)
     set_computer_value(SEND_FACT_CMD, CURVES_CH1, &actual_speed, 1);                // 给通道 1 发送实际值
 //    set_computer_value(SEND_FACT_CMD, CURVES_CH2, &actual_current, 1);                // 给通道 2 发送实际值
   #else
-    printf("实际值：%d. 目标值：%.0f\n", actual_speed, get_pid_actual());      // 打印实际值和目标值
+    printf("实际值：%d. 目标值：%.0f\n", actual_speed, get_pid_target(&pid_speed));      // 打印实际值和目标值
   #endif
   }
 }

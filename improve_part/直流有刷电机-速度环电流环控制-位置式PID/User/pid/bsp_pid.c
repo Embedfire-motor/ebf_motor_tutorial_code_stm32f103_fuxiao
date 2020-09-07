@@ -100,9 +100,12 @@ float curr_pid_realize(_pid *pid, float actual_val)
 //      pid->err = 0;
 //      pid->integral = 0;
 //    }
-  
-    pid->integral += pid->err;    // Îó²îÀÛ»ı
 
+    if (pid->integral > -3600 && pid->integral < 3600)
+      pid->integral += pid->err;    // Îó²îÀÛ»ı
+
+//    printf("target_val=%f,actual_val=%f,", pid->target_val,actual_val);
+//    printf("integral=%f,err=%f", pid->integral,pid->err);
 		/*PIDËã·¨ÊµÏÖ*/
     pid->actual_val = pid->Kp*pid->err+pid->Ki*pid->integral+pid->Kd*(pid->err-pid->err_last);
   

@@ -112,7 +112,7 @@ static void ADC_Mode_Config(void)
     }
     
     // 外设中断优先级配置和使能中断配置
-    HAL_NVIC_SetPriority(ADC_DMA_IRQ, 1, 1);
+    HAL_NVIC_SetPriority(ADC_DMA_IRQ, 0, 0);
     HAL_NVIC_EnableIRQ(ADC_DMA_IRQ);
 
     HAL_ADC_Start_DMA(&ADC_Handle, (uint32_t*)&adc_buff, ADC_NUM_MAX);
@@ -150,7 +150,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
   adc_mean_sum += adc_mean / (ADC_NUM_MAX / 2);    // 累加电压
   adc_mean_count++;
   
-#if 1
+#if 0
   
   adc_mean = 0;
   

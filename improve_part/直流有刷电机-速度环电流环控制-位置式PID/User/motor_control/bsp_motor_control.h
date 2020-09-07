@@ -5,14 +5,13 @@
 #include "./tim/bsp_motor_tim.h"
 #include "main.h"
 #include "./pid/bsp_pid.h"
-#include "./Encoder/bsp_encoder.h"
 
 //引脚定义
 /*******************************************************/
 // 连接MOS管搭建板的 SD 脚，或者连接L298N板的 EN 脚
-#define SHUTDOWN_PIN                  GPIO_PIN_12
-#define SHUTDOWN_GPIO_PORT            GPIOB
-#define SHUTDOWN_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOB_CLK_ENABLE()
+#define SHUTDOWN_PIN                  GPIO_PIN_15
+#define SHUTDOWN_GPIO_PORT            GPIOD
+#define SHUTDOWN_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOD_CLK_ENABLE()
 /*******************************************************/
 
 /* 电机 SD or EN 使能脚 */

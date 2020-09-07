@@ -41,7 +41,8 @@ int main(void)
 	/* 协议初始化 */
 	protocol_init();
 	/*初始化USART 配置模式为 115200 8-N-1，中断接收*/
-	DEBUG_USART_Config();
+	DEBUG_USART_Config();while(1)
+  printf("kjsdhkfjshd");
 	/* 初始化基本定时器定时，20ms产生一次中断 */
 	TIMx_Configuration();
 	/* PID算法参数初始化 */
@@ -59,7 +60,8 @@ int main(void)
 	while(1)
 	{      
 		/* 接收数据处理 */
-		receiving_process();		
+		receiving_process();	
+    
 		/*模拟修改PID目标值*/
 		if( Key_Scan(KEY1_GPIO_PORT,KEY1_PIN) == KEY_ON  )
 		{
@@ -88,14 +90,14 @@ int main(void)
 #if defined(PID_ASSISTANT_EN) 
 		  if (!pid_status)
 		  {
-			set_computer_value(SEND_START_CMD, CURVES_CH1, NULL, 0);     // 同步上位机的启动按钮状态
+        set_computer_value(SEND_START_CMD, CURVES_CH1, NULL, 0);     // 同步上位机的启动按钮状态
 		  }
 		  else
 		  {
-			set_computer_value(SEND_STOP_CMD, CURVES_CH1, NULL, 0);     // 同步上位机的启动按钮状态
+        set_computer_value(SEND_STOP_CMD, CURVES_CH1, NULL, 0);     // 同步上位机的启动按钮状态
 		  }      
 #endif
-		} 
+		}
 		
 	}
 }

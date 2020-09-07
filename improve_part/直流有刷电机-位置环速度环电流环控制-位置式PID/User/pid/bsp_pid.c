@@ -20,8 +20,8 @@ void PID_param_init(void)
     pid_location.err_last=0.0;
     pid_location.integral=0.0;
   
-		pid_location.Kp = 0.011;//0.0068
-		pid_location.Ki = 0.0018	;//0.01
+		pid_location.Kp = 0.019;//0.0068
+		pid_location.Ki = 0.0015	;//0.01
 		pid_location.Kd = 0.0;
 
     /* 速度相关初始化参数 */
@@ -42,7 +42,7 @@ void PID_param_init(void)
     pid_curr.err_last=0.0;
     pid_curr.integral=0.0;
 
-	pid_curr.Kp = 0.0;
+    pid_curr.Kp = 0.0;
     pid_curr.Ki = 3.5;//5.5
     pid_curr.Kd = 0.00;
 

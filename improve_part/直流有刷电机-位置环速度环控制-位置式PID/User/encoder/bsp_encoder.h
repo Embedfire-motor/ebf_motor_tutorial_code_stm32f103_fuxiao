@@ -4,9 +4,9 @@
 #include "stm32f1xx.h"
 
 /* 定时器选择 */
-#define ENCODER_TIM                            TIM3
-#define ENCODER_TIM_CLK_ENABLE()  				     __HAL_RCC_TIM3_CLK_ENABLE()
-#define ENCODER_TIM_AF_CLK_ENABLE()  			     __HAL_AFIO_REMAP_TIM3_ENABLE()
+#define ENCODER_TIM                            TIM4
+#define ENCODER_TIM_CLK_ENABLE()  				     __HAL_RCC_TIM4_CLK_ENABLE()
+#define ENCODER_TIM_AF_CLK_ENABLE()  			     __HAL_AFIO_REMAP_TIM4_ENABLE()
 
 /* 定时器溢出值 */		
 #define ENCODER_TIM_PERIOD                     65535
@@ -14,17 +14,17 @@
 #define ENCODER_TIM_PRESCALER                  0      
 
 /* 定时器中断 */
-#define ENCODER_TIM_IRQn                       TIM3_IRQn
-#define ENCODER_TIM_IRQHandler                 TIM3_IRQHandler
+#define ENCODER_TIM_IRQn                       TIM4_IRQn
+#define ENCODER_TIM_IRQHandler                 TIM4_IRQHandler
 
 /* 编码器接口引脚 */
-#define ENCODER_TIM_CH1_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOC_CLK_ENABLE()
-#define ENCODER_TIM_CH1_GPIO_PORT              GPIOC
-#define ENCODER_TIM_CH1_PIN                    GPIO_PIN_6
+#define ENCODER_TIM_CH1_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOD_CLK_ENABLE()
+#define ENCODER_TIM_CH1_GPIO_PORT              GPIOD
+#define ENCODER_TIM_CH1_PIN                    GPIO_PIN_12
 
-#define ENCODER_TIM_CH2_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOC_CLK_ENABLE()
-#define ENCODER_TIM_CH2_GPIO_PORT              GPIOC
-#define ENCODER_TIM_CH2_PIN                    GPIO_PIN_7
+#define ENCODER_TIM_CH2_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOD_CLK_ENABLE()
+#define ENCODER_TIM_CH2_GPIO_PORT              GPIOD
+#define ENCODER_TIM_CH2_PIN                    GPIO_PIN_13
 
 /* 编码器接口倍频数 */
 #define ENCODER_MODE                           TIM_ENCODERMODE_TI12

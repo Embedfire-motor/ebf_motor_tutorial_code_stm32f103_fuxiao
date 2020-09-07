@@ -77,7 +77,8 @@ int main(void)
 	{
     /* 接收数据处理 */
     receiving_process();
-    /* 扫描KEY1 */
+    
+   /* 扫描KEY1 */
     if( Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
     {
     #if defined(PID_ASSISTANT_EN) 
@@ -85,45 +86,7 @@ int main(void)
     #endif
       set_pid_target(target_curr);    // 设置目标值
       set_motor_enable();              // 使能电机
-			
-			while(1)
-			{
-				/* 接收数据处理 */
-				receiving_process();
-				/* 扫描KEY1 */
-				if( Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
-				{
-					/* 增大目标速度 */
-					target_curr += 10;
-					
-					if(target_curr > 120)
-						target_curr = 120;
-					
-					set_pid_target(target_curr);
-				#if defined(PID_ASSISTANT_EN)
-					set_computer_value(SEND_TARGET_CMD, CURVES_CH1,  &target_curr, 1);     // 给通道 1 发送目标值
-				#endif
-				}
-
-				/* 扫描KEY2 */
-				if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
-				{
-					/* 减小目标速度 */
-					target_curr -= 10;
-					
-					if(target_curr < 5)
-						target_curr = 0;
-					
-					set_pid_target(target_curr);
-				#if defined(PID_ASSISTANT_EN)
-					set_computer_value(SEND_TARGET_CMD, CURVES_CH1,  &target_curr, 1);     // 给通道 1 发送目标值
-				#endif
-
-				}
-			}
     }
-#if 0//按键数量少,换向\禁用电机功能暂时不用,请使用PID调试助手调试
-
     
     /* 扫描KEY2 */
     if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
@@ -133,7 +96,7 @@ int main(void)
       set_computer_value(SEND_STOP_CMD, CURVES_CH1, NULL, 0);               // 同步上位机的启动按钮状态
     #endif
     }
-
+    
     /* 扫描KEY3 */
     if( Key_Scan(KEY3_GPIO_PORT, KEY3_PIN) == KEY_ON)
     {
@@ -162,9 +125,7 @@ int main(void)
     #if defined(PID_ASSISTANT_EN)
       set_computer_value(SEND_TARGET_CMD, CURVES_CH1,  &target_curr, 1);     // 给通道 1 发送目标值
     #endif
-
     }
-#endif
 	}
 }
 

@@ -150,7 +150,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
   adc_mean_sum += adc_mean / (ADC_NUM_MAX / 2);    // ¿€º”µÁ—π
   adc_mean_count++;
   
-#if 1
+#if 0
   
   adc_mean = 0;
   

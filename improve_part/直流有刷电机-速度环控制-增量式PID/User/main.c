@@ -4,7 +4,7 @@
   * @author  fire
   * @version V1.0
   * @date    2020-xx-xx
-  * @brief   直流有刷电机-速度环控制-增量式PID
+  * @brief   直流有刷电机-速度环控制-位置式PID
   ******************************************************************************
   * @attention
   *
@@ -35,12 +35,16 @@
 int main(void) 
 {
   int32_t target_speed = 100;
+  
   /* HAL库初始化*/
   HAL_Init();
+  
 	/* 初始化系统时钟为72MHz */
 	SystemClock_Config();
+  
 	/* 开启复用寄存器时钟 */
 	__HAL_RCC_SYSCFG_CLK_ENABLE();
+  
 	/* 初始化按键 GPIO */
 	Key_GPIO_Config();
   
@@ -85,43 +89,8 @@ int main(void)
     #endif
       set_pid_target(target_speed);    // 设置目标值
       set_motor_enable();              // 使能电机
-			
-			while(1)
-			{
-				/* 接收数据处理 */
-				receiving_process();
-				/* 扫描KEY1 */
-				if( Key_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
-				{
-					/* 增大目标速度 */
-					target_speed += 50;
-					
-					if(target_speed > 350)
-						target_speed = 350;
-					
-					set_pid_target(target_speed);
-				#if defined(PID_ASSISTANT_EN)
-					set_computer_value(SEND_TARGET_CMD, CURVES_CH1,  &target_speed, 1);     // 给通道 1 发送目标值
-				#endif
-				}
-
-				/* 扫描KEY2 */
-				if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
-				{
-					/* 减小目标速度 */
-					target_speed -= 50;
-					
-					if(target_speed < -350)
-						target_speed = -350;
-					
-					set_pid_target(target_speed);
-				#if defined(PID_ASSISTANT_EN)
-					set_computer_value(SEND_TARGET_CMD, CURVES_CH1,  &target_speed, 1);     // 给通道 1 发送目标值
-				#endif
-				}
-			}
     }
-#if 0//按键数量少,换向\禁用电机功能暂时不用,请使用PID调试助手调试
+    
     /* 扫描KEY2 */
     if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
     {
@@ -130,7 +99,36 @@ int main(void)
       set_computer_value(SEND_STOP_CMD, CURVES_CH1, NULL, 0);               // 同步上位机的启动按钮状态
     #endif
     }
-#endif
+    
+    /* 扫描KEY3 */
+    if( Key_Scan(KEY3_GPIO_PORT, KEY3_PIN) == KEY_ON)
+    {
+      /* 增大目标速度 */
+      target_speed += 50;
+      
+      if(target_speed > 350)
+        target_speed = 350;
+      
+      set_pid_target(target_speed);
+    #if defined(PID_ASSISTANT_EN)
+      set_computer_value(SEND_TARGET_CMD, CURVES_CH1,  &target_speed, 1);     // 给通道 1 发送目标值
+    #endif
+    }
+
+    /* 扫描KEY4 */
+    if( Key_Scan(KEY4_GPIO_PORT, KEY4_PIN) == KEY_ON)
+    {
+      /* 减小目标速度 */
+      target_speed -= 50;
+      
+      if(target_speed < -350)
+        target_speed = -350;
+      
+      set_pid_target(target_speed);
+    #if defined(PID_ASSISTANT_EN)
+      set_computer_value(SEND_TARGET_CMD, CURVES_CH1,  &target_speed, 1);     // 给通道 1 发送目标值
+    #endif
+    }
 
 	}
 }
