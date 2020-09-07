@@ -3,12 +3,7 @@
 
 #include "stm32f1xx.h"
 #include <stdio.h>
-
-//串口接收缓冲数组大小
-#define UART_RX_BUFFER_SIZE 256 
-
-extern unsigned char UART_RxBuffer[UART_RX_BUFFER_SIZE];
-extern uint8_t receive_cmd;
+#include "./protocol/protocol.h"
 
 //串口波特率
 #define DEBUG_USART_BAUDRATE                    115200

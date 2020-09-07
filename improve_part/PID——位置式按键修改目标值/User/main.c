@@ -37,12 +37,12 @@ int main(void)
 {  
 	/* 初始化系统时钟为72MHz */
 	SystemClock_Config();
-
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
 	/* 协议初始化 */
 	protocol_init();
 	/*初始化USART 配置模式为 115200 8-N-1，中断接收*/
-	DEBUG_USART_Config();while(1)
-  printf("kjsdhkfjshd");
+	DEBUG_USART_Config();
+  
 	/* 初始化基本定时器定时，20ms产生一次中断 */
 	TIMx_Configuration();
 	/* PID算法参数初始化 */
