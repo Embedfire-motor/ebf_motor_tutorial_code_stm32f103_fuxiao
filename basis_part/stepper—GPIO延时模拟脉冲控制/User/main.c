@@ -37,6 +37,8 @@ int main(void)
   HAL_Init();        
   /* 配置系统时钟为72 MHz */ 
   SystemClock_Config();
+		/* 开启复用寄存器时钟 */
+	__HAL_RCC_SYSCFG_CLK_ENABLE();
   /*初始化USART 配置模式为 115200 8-N-1，中断接收*/
   DEBUG_USART_Config();
   printf("欢迎使用野火 电机开发板 步进电机 IO口模拟控制 例程\r\n");
