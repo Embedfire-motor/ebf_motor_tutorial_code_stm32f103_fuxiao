@@ -5,9 +5,9 @@
 #include "main.h"
 //Òý½Å¶¨Òå
 /*******************************************************/
-#define KEY1_PIN                  GPIO_PIN_15                 
-#define KEY1_GPIO_PORT            GPIOA                      
-#define KEY1_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOA_CLK_ENABLE()
+#define KEY1_PIN                  GPIO_PIN_11                 
+#define KEY1_GPIO_PORT            GPIOB                      
+#define KEY1_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOB_CLK_ENABLE()
 
 #define KEY2_PIN                  GPIO_PIN_2                 
 #define KEY2_GPIO_PORT            GPIOD                     

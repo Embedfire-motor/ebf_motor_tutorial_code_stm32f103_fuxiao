@@ -39,7 +39,7 @@
 #include "main.h"
 #include "stm32f1xx_it.h"
 #include "./led/bsp_led.h"
-
+#include "./usart/bsp_debug_usart.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -165,7 +165,17 @@ void SysTick_Handler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
-
+void  DEBUG_USART_IRQHandler(void)
+{
+  uint8_t ch=0; 
+  
+	if(__HAL_UART_GET_FLAG( &UartHandle, UART_FLAG_RXNE ) != RESET)
+	{		
+    ch=( uint16_t)READ_REG(UartHandle.Instance->DR);
+    WRITE_REG(UartHandle.Instance->DR,ch); 
+ 
+	}
+}
 /**
   * @brief  This function handles TIM interrupt request.
   * @param  None

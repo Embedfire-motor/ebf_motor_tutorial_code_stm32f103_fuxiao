@@ -72,7 +72,7 @@ int main(void)
         printf("逆时针旋转 %d 度,",angle_val);
       
       printf("正在运行中......\r\n");
-      stepper_turn(1000,angle_val,32,dir_val);
+      stepper_turn(500,angle_val,32,dir_val);
       key_val = OFF;
     }
   }

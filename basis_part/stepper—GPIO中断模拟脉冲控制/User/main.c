@@ -48,7 +48,7 @@ int main(void)
   /*步进电机初始化*/
   stepper_Init(); 
 
-  MOTOR_EN(HIGH);
+  MOTOR_EN(LOW);
 
   while(1)
   {     
