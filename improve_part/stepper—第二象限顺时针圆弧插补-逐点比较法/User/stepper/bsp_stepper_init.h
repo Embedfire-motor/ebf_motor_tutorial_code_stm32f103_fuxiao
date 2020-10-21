@@ -85,8 +85,8 @@ typedef struct{
 #define HIGH GPIO_PIN_SET	      //高电平
 #define LOW  GPIO_PIN_RESET	    //低电平
 
-#define ON  HIGH	              //开
-#define OFF LOW	                //关
+//#define ON  HIGH	              //开
+//#define OFF LOW	                //关
 
 #define CW 	LOW		              //顺时针
 #define CCW HIGH      	        //逆时针

@@ -60,7 +60,7 @@ int main(void)
 	/*步进电机初始化*/
 	stepper_Init();	
   /* 上电默认停止电机，按键1启动 */
-  MOTOR_EN(HIGH);
+  MOTOR_EN(LOW);
   /* 编码器接口初始化 */
 	Encoder_Init();	
 
