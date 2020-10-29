@@ -27,7 +27,7 @@
 //#define __HAL_TIM_GET_PRESCALER(__HANDLE__)      ((__HANDLE__)->Instance->PSC)    // Get TIM Prescaler.
 //#define GET_BASIC_TIM_PERIOD(__HANDLE__)    (1.0/(HAL_RCC_GetPCLK2Freq()/(__HAL_TIM_GET_PRESCALER(__HANDLE__)+1)/(__HAL_TIM_GET_AUTORELOAD(__HANDLE__)+1))*1000)
 
-/* 以下两宏仅适用于定时器时钟源TIMxCLK=72MHz，预分频器为：7200-1 的情况 */
+/* 以下两宏仅适用于定时器时钟源TIMxCLK=72MHz，预分频器为：720-1 的情况 */
 #define SET_BASIC_TIM_PERIOD(T)     __HAL_TIM_SET_AUTORELOAD(&TIM_TimeBaseStructure, (T)*100 - 1)    // 设置定时器的周期（1~1000ms）
 #define GET_BASIC_TIM_PERIOD()      ((__HAL_TIM_GET_AUTORELOAD(&TIM_TimeBaseStructure)+1)/100.0f)     // 获取定时器的周期，单位ms
 

@@ -15,8 +15,8 @@
 /* 当定时器从0计数到PWM_PERIOD_COUNT，即为PWM_PERIOD_COUNT+1次，为一个定时周期 */
 #define PWM_PERIOD_COUNT     (3600)
 
-/* 通用控制定时器时钟源TIMxCLK = HCLK=72MHz */
-/* 设定定时器频率为=TIMxCLK/(PWM_PRESCALER_COUNT+1) */
+/* 通用控制定时器时钟源TIMxCLK = HCLK= 72MHz */
+/* 设定定时器频率为=TIMxCLK/(PWM_PRESCALER_COUNT) =10KHZ */
 #define PWM_PRESCALER_COUNT     (2)
 
 /* 最大比较值 */

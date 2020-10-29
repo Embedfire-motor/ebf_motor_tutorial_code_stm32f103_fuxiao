@@ -61,7 +61,7 @@ A.晶振：
 
 B.各总线运行时钟：
 -系统时钟 = SYCCLK = AHB1 = 72MHz
--APB2 = 36MHz 
+-APB2 = 72MHz 
 -APB1 = 36MHz
 
 C.浮点运算单元：

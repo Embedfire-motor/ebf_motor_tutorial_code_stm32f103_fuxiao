@@ -133,7 +133,7 @@ static void TIM_Mode_Config(void)
   motor1_htimx_bldcm.Init.Period = MOTOR1_PWM_PERIOD_COUNT - 1;
 	motor2_htimx_bldcm.Init.Period = MOTOR2_PWM_PERIOD_COUNT - 1;
 	
-  // 高级控制定时器时钟源TIMxCLK = HCLK=216MHz 
+  // 高级控制定时器时钟源TIMxCLK = HCLK=72MHz 
   // 设定定时器频率为=TIMxCLK/(TIM_Prescaler+1)=1MHz
   motor1_htimx_bldcm.Init.Prescaler = MOTOR1_PWM_PRESCALER_COUNT - 1;	
   motor2_htimx_bldcm.Init.Prescaler = MOTOR2_PWM_PRESCALER_COUNT - 1;	
