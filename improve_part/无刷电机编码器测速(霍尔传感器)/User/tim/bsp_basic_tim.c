@@ -55,8 +55,8 @@ static void TIM_Mode_Config(void)
 	TIM_TimeBaseStructure.Init.Period = BASIC_PERIOD_COUNT - 1;       
 
 	//定时器时钟源TIMxCLK = 2 * PCLK1  
-	//				PCLK1 = HCLK / 4 
-	//				=> TIMxCLK=HCLK/2=SystemCoreClock/2=84MHz
+	//				PCLK1 = HCLK / 2 
+	//				=> TIMxCLK=HCLK/2=SystemCoreClock/2=72MHz
 	// 设定定时器频率为=TIMxCLK/BASIC_PRESCALER_COUNT
 	TIM_TimeBaseStructure.Init.Prescaler = BASIC_PRESCALER_COUNT - 1;	
   TIM_TimeBaseStructure.Init.CounterMode = TIM_COUNTERMODE_UP;           // 向上计数

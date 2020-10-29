@@ -33,7 +33,7 @@ int main(void)
   /* HAL 库初始化 */
   HAL_Init();
   
-	/* 初始化系统时钟为168MHz */
+	/* 初始化系统时钟为72MHz */
 	SystemClock_Config();
 	
 	/* 开启复用寄存器时钟 */

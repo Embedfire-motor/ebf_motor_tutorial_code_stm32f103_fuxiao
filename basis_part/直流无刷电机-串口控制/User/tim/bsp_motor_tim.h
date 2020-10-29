@@ -62,7 +62,7 @@ extern TIM_HandleTypeDef  htimx_bldcm;
 extern TIM_HandleTypeDef htimx_hall;
 
 /* 累计 TIM_Period个后产生一个更新或者中断		
-	当定时器从0计数到4999，即为5000次，为一个定时周期 */
+	当定时器从0计数到65535，即为65535次，为一个定时周期 */
 #define HALL_PERIOD_COUNT     (0xFFFF)
 
 /* 高级控制定时器时钟源TIMxCLK = HCLK = 72MHz

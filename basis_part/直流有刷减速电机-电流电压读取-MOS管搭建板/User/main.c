@@ -42,7 +42,7 @@ int main(void)
 
   HAL_Init();
   
-	/* 初始化系统时钟为168MHz */
+	/* 初始化系统时钟为72MHz */
 	SystemClock_Config();
 
 	/* 开启复用寄存器时钟 */
@@ -87,7 +87,7 @@ int main(void)
       enable = !enable;
     }
     
-    /* 扫描KEY3 */
+    /* 扫描KEY2 */
     if( Key_Scan(KEY2_GPIO_PORT, KEY2_PIN) == KEY_ON)
     {
       /* 增大占空比 */
@@ -99,7 +99,7 @@ int main(void)
       set_motor_speed(ChannelPulse);
     }
     
-    /* 扫描KEY4 */
+    /* 扫描KEY3 */
     if( Key_Scan(KEY3_GPIO_PORT, KEY3_PIN) == KEY_ON)
     {
       if(ChannelPulse < PWM_MAX_PERIOD_COUNT/10)
@@ -110,7 +110,7 @@ int main(void)
       set_motor_speed(ChannelPulse);
     }
     
-    /* 扫描KEY5 */
+    /* 扫描KEY4 */
     if( Key_Scan(KEY4_GPIO_PORT, KEY4_PIN) == KEY_ON)
     {
       /* 转换方向 */

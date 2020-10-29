@@ -4,7 +4,7 @@
   * @author  fire
   * @version V1.0
   * @date    2020-xx-xx
-  * @brief   直流有刷减速电机-按键控制
+  * @brief   直流有刷减速电机-按键控制-双电机
   ******************************************************************************
   * @attention
   *
@@ -39,7 +39,7 @@ int main(void)
   uint8_t motor1_en_flag = 0;
   uint8_t motor2_en_flag = 0;
 
-	/* 初始化系统时钟为168MHz */
+	/* 初始化系统时钟为72MHz */
 	SystemClock_Config();
   
 	/* 开启复用寄存器时钟 */
@@ -58,7 +58,7 @@ int main(void)
   /* 调试串口初始化 */
   DEBUG_USART_Config();
   
-  printf("野火直流无刷电机按键控制例程\r\n");
+  printf("野火直流无刷双电机按键控制例程\r\n");
 
   /* 电机初始化 */
   bldcm_init();
